@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Barcode</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+  <!--<link href="favicon.ico" rel="shortcut icon">-->
+  <!-- Bootstrap CSS File -->
+  <link href="css/bootstrap-yeti.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <section id="sec-about" class="mg-bottom-30">
+    <h2 class="sec-header-center">
+      <span>EOS Barcode</span>
+    </h2>
+    <div class="container">
+      <div class="row" id="mainContent">
+
+      </div>
+    </div>
+  </section>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/JsBarcode.code128.min.js"></script>
+  <script src="js/functions.js"></script>
+  <script>
+    $(document).ready(function(){
+      var $content = $("#mainContent");
+      var $html = "";
+      var $param = getUrlVars();
+      var len = $param.length;
+      for(var i=0;i<len; i=i+2){
+        if(!$param[i] || $param[i] == ""){
+          continue;
+        }
+        $html +='<div class="col-sm-3"> \
+                  <p style="margin:0px;">' + $param[$param[i+1]] + '</p> \
+                  <svg id="myBarcode' + i + '"</svg> \
+                </div>';
+      }
+      $content.append($html);
+      for(var i=0; i<=len; i=i+2){
+        if(!$param[i] || $param[i] == ""){
+          continue;
+        }
+        convertBarcode("myBarcode" + i, $param[$param[i]]);
+      }
+
+    });
+  </script>
+</body>
+</html>
