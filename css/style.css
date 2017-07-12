@@ -6,8 +6,8 @@ body {
 
 @page {
   size: A4;
-  padding-left: -5cm;
-  padding-ri: -5cm; }
+  margin-left: -5cm;
+  margin-right: -5cm; }
 #mystartup {
   display: table;
   width: 100%;
