@@ -4,6 +4,10 @@ body {
   margin: 0pxpx;
   padding: 0px; }
 
+@page {
+  size: A4;
+  padding-left: -5cm;
+  padding-ri: -5cm; }
 #mystartup {
   display: table;
   width: 100%;
@@ -26,7 +30,7 @@ section {
   margin: 0 0 10px 0; }
 
 #sec-about {
-  padding-top: 30px;
+  padding-top: 0px;
   text-align: center; }
 
 .sec-header-center {
