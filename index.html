@@ -83,7 +83,25 @@
   <script>
     $(document).ready(function(){
       JsBarcode("#myBarcode").init();
+
     });
+    function submitForm(e){
+      var myVars = localStorage;
+      var $title = $("#inputPageTitle");
+      var $form = $("#formBarcode");
+      var formData = JSON.stringify($form.serializeArray());
+      if(!$title.val()){
+        alert("Please fill the title field.");
+        $title.focus();
+        return;
+      }
+      myVars.clear();
+      myVars.setItem("barcode_title",$title.val());
+      myVars.setItem("barcode_data",formData);
+      e.preventDefault();
+      window.location.href = "barcode.html";
+      return;
+    }
     function showBarcodeContainer(){
       var $box = $("#barcode-container");
       var $amount = $(":input#inputAmount");
@@ -102,6 +120,7 @@
       var $box = $("#barcode-container");
       $box.hide();
     }
+
   </script>
 </body>
 </html>

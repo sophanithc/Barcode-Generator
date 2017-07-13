@@ -23,7 +23,7 @@
 <body>
   <section id="sec-about" class="mg-bottom-30">
     <h2 class="sec-header-center">
-      <span>EOS Barcode</span>
+      <span id="pageTitle"></span>
     </h2>
     <div class="container">
       <div class="row" id="mainContent">
@@ -40,27 +40,34 @@
   <script src="js/functions.js"></script>
   <script>
     $(document).ready(function(){
+      var myVars = localStorage["barcode_data"];
+      var $title = $("#pageTitle");
       var $content = $("#mainContent");
-      var $html = "";
-      var $param = getUrlVars();
-      var len = $param.length;
-      for(var i=0;i<len; i=i+2){
-        if(!$param[i] || $param[i] == ""){
+      var data = [], len = 0;
+      var html = "";
+      if(!myVars){
+        alert("Barcode is not found!.");
+        return;
+      }
+      $title.html(localStorage["barcode_title"]);
+      data = JSON.parse(myVars);
+      len = data.length;
+      for(var i=0; i<len; i=i+2){
+        if(!data[i]){
           continue;
         }
-        $html +='<div class="col-sm-3"> \
-                  <p style="margin:0px;">' + $param[$param[i+1]] + '</p> \
+        html +='<div class="col-sm-3"> \
+                  <p style="margin:0px;">' + data[i+1].value + '</p> \
                   <svg id="myBarcode' + i + '"</svg> \
                 </div>';
       }
-      $content.append($html);
+      $content.append(html);
       for(var i=0; i<=len; i=i+2){
-        if(!$param[i] || $param[i] == ""){
+        if(!data[i]){
           continue;
         }
-        convertBarcode("myBarcode" + i, $param[$param[i]]);
+        convertBarcode("myBarcode" + i, data[i].value);
       }
-
     });
   </script>
 </body>

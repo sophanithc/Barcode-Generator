@@ -9,6 +9,7 @@ function generateBarcodeForm(amount, start, url){
   $form = $(document.createElement("form"));
   $form.attr("id","formBarcode");
   $form.attr("action",url);
+  $form.on("submit",submitForm);
   for(var i=start;i<=amount;i++){
     html += '<div class="form-group box-barcode-outer"> \
               <label>Barcode #'+ i +'</label> \
